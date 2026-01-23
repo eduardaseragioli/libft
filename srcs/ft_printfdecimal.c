@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_printfdecimal.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eseragio <eseragio@student.42porto.co      +#+  +:+       +#+        */
+/*   By: eseragio <eseragio@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/17 20:05:42 by eseragio          #+#    #+#             */
-/*   Updated: 2025/10/17 20:46:59 by eseragio         ###   ########.fr       */
+/*   Created: 2025/11/05 19:42:55 by eseragio          #+#    #+#             */
+/*   Updated: 2026/01/22 19:48:36 by eseragio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putchar_fd(char c, int fd)
+int	ft_printfdecimal(unsigned int nb)
 {
-	write (fd, &c, 1);
+	int	len;
+
+	len = 0;
+	if (nb >= 10)
+		len += ft_printfdecimal(nb / 10);
+	len += ft_putchar_fd((nb % 10) + '0', 1);
+	return (len);
 }
 /*
-int	main(void)
+int main(void)
 {
-	int fd;
-	fd = open("text.txt", O_WRONLY);
-	ft_putchar_fd('d', fd);
-	close(fd);
+	int n = 255;
+	
+	printf("\n result: %d\n", ft_printfdecimal(n));
 }
 */

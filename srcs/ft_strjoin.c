@@ -6,37 +6,38 @@
 /*   By: eseragio <eseragio@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 11:03:01 by eseragio          #+#    #+#             */
-/*   Updated: 2025/10/20 11:42:29 by eseragio         ###   ########.fr       */
+/*   Updated: 2026/01/22 20:26:19 by eseragio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+//flag to choose which str will be freed (1 = s1, 2 = s2 3 = both)
+char	*ft_strjoin(char *s1, char *s2, int flag_free)
 {
 	size_t	i;
 	size_t	j;
 	char	*newstr;
 
-	i = 0;
+	i = -1;
 	j = 0;
 	if (!s1 && !s2)
 		return (NULL);
-	if (!s1)
-		return (ft_strdup(s2));
-	if (!s2)
-		return (ft_strdup(s1));
 	newstr = malloc (sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (newstr == NULL)
-		return (NULL);
-	while (s1[i])
-	{
+		return (free(s1), NULL);
+	while (s1[++i])
 		newstr[i] = s1[i];
-		i++;
-	}
 	while (s2[j])
 		newstr[i++] = s2[j++];
 	newstr[i] = '\0';
+	if (flag_free - 2 >= 0)
+	{
+		flag_free -= 2;
+		free(s2);
+	}
+	if (flag_free == 1)
+		free(s1);
 	return (newstr);
 }
 /*

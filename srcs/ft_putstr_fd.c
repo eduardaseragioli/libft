@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eseragio <eseragio@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/17 21:07:35 by eseragio          #+#    #+#             */
-/*   Updated: 2025/10/20 10:17:01 by eseragio         ###   ########.fr       */
+/*   Created: 2025/10/17 20:15:44 by eseragio          #+#    #+#             */
+/*   Updated: 2026/01/22 20:14:14 by eseragio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr_fd(int n, int fd)
+int	ft_putstr_fd(char *s, int fd)
 {
-	long int	nb;
+	int	i;
 
-	nb = n;
-	if (nb < 0)
+	i = 0;
+	if (s == NULL)
+		return (write(fd, "(null)", 6), 6);
+	while (s[i])
 	{
-		ft_putchar_fd('-', fd);
-		nb = -nb;
+		write(fd, &s[i], 1);
+		i++;
 	}
-	if (nb > 9)
-		ft_putnbr_fd(nb / 10, fd);
-	ft_putchar_fd(nb % 10 + '0', fd);
+	return (i);
 }
 /*
 int	main(void)
 {
 	int fd;
 	fd = open("arquivo.txt", O_WRONLY);
-	ft_putnbr_fd(42, fd);
+	ft_putstr_fd("duda", fd);
 	close(fd);
 }
 */

@@ -6,7 +6,7 @@
 /*   By: eseragio <eseragio@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:38:58 by eseragio          #+#    #+#             */
-/*   Updated: 2025/10/17 16:41:12 by eseragio         ###   ########.fr       */
+/*   Updated: 2025/10/29 21:36:04 by eseragio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	main(void)
 	result = ft_itoa(n);
 	printf("%s\n", result);
 
-	int num = -42222222;
+	long num = -2147483650667655890;
 	char *res;
 	res = ft_itoa(num);
 	printf("%s\n", res);
